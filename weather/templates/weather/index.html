@@ -20,12 +20,13 @@
 
         <div class="container">
             <div class="row">
-                <div class="col col-md-8 offset-md-2">
+                <form class="col col-md-8 offset-md-2" method="POST" action="">
+                    {% csrf_token %}
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="type city name here ...." name="city">
-                        <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="fa-solid fa-magnifying-glass"></i></button>
                       </div>
-                </div>
+                </form>
             </div>
             <div class="row">
                 <div class="col col-md-8 offset-md-2">
@@ -54,9 +55,9 @@
                             <td>274.44K</td>
                           </tr>
                         </tbody>
-                       
                     </table>
-                </div> <br>
+                    <hr>
+                </div> 
             </div>
         </div>
         <footer class="footer bg-secondary fixed-bottom">
