@@ -19,9 +19,7 @@
         <br>
 
         <div class="container">
-            <!-- <h2>
-                {{ data }}
-            </h2> -->
+            <h2> {{ data }} </h2>
             <div class="row">
                 <form class="col col-md-8 offset-md-2" method="POST" action="">
                     {% csrf_token %}
@@ -33,6 +31,9 @@
             </div>
             <div class="row">
                 <div class="col col-md-8 offset-md-2">
+                    <div class="">
+                        <img src="http://openweathermap.org/img/w/{{ data.icon }}.png" alt="Image" class="img-fluid">
+                    </div>
                     <table class="table table-light">
                         <tbody>
                           <tr>
@@ -47,7 +48,7 @@
                           </tr>
                           <tr>
                             <th scope="row">Temperture</th>
-                            <td>{{ data.temperture }}K</td>
+                            <td>{{ data.temperture }}</td>
                           </tr>
                           <tr>
                             <th scope="row">Pressure</th>
