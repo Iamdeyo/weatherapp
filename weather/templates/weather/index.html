@@ -19,6 +19,9 @@
         <br>
 
         <div class="container">
+            <!-- <h2>
+                {{ data }}
+            </h2> -->
             <div class="row">
                 <form class="col col-md-8 offset-md-2" method="POST" action="">
                     {% csrf_token %}
@@ -34,25 +37,25 @@
                         <tbody>
                           <tr>
                             <th scope="row"> City </th>
-                            <td>Lagos</td>
+                            <td>{{ data.city }}</td>
 
                           </tr>
                           <tr>
                             <th scope="row">Country Code</th>
-                            <td>LA</td>
+                            <td>{{ data.countryCode }}</td>
 
                           </tr>
                           <tr>
                             <th scope="row">Temperture</th>
-                            <td>274.44K</td>
+                            <td>{{ data.temperture }}K</td>
                           </tr>
                           <tr>
                             <th scope="row">Pressure</th>
-                            <td>274.44K</td>
+                            <td>{{ data.pressure }}</td>
                           </tr>
                           <tr>
                             <th scope="row">Humdity</th>
-                            <td>274.44K</td>
+                            <td>{{ data.humdity }}</td>
                           </tr>
                         </tbody>
                     </table>
