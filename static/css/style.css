@@ -1,0 +1,45 @@
+.dy-card{
+    color: #fff;
+    background-color: rgb(121, 144, 174);
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15px 10px;
+    border-radius: 15px;
+    margin: 0%;
+}
+.dy-card *{
+    margin: 0;
+}
+.dy-card p{
+    color: #ffffffd1;
+    font-size: 1.2rem;
+}
+.dy-card div:first-child{
+    /* font-size: 2rem; */
+}
+.dy-card div:nth-child(2){
+    display: flex;
+    /* justify-content: space-between; */
+    gap: 25px;
+    /* width: 70%; */
+    margin: 15px 0;
+}
+.dy-card div:nth-child(2) h1{
+    font-size: 4rem;
+}
+.dy-card div:nth-child(2) figure{
+    min-width: 100px;
+}
+.dy-card div:nth-child(2) img{
+    width: 100%;
+}
+.dy-card div:nth-child(3){
+    display: flex;
+    justify-content: space-between;
+}
+footer.footer{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
