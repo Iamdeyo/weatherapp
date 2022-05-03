@@ -14,10 +14,14 @@
     <body>
         <nav class="navbar navbar-dark bg-secondary fixed-top">
             <div class="container-fluid">
-                <!-- <img src="{% static 'img/logo.png' %}" class="img-thumbnail" alt="..."> -->
-              <a class="navbar-brand" href="{% url 'index' %}">
-                  <h1> Weather Today </h1>
-              </a>
+                <a class="navbar-brand" href="{% url 'index' %}">
+                    <img src="{% static 'img/logo2.jpg' %}" alt="" width="30" height="24" class="d-inline-block align-text-top">
+                    Weather Today
+                </a>
+                <!-- <img src="{% static 'img/logo2.jpg' %}" class="img-thumbnail" alt="..."> -->
+              <!-- <a class="navbar-brand" href="{% url 'index' %}">
+                  <h1 class="text-center text-sm-start"> Weather Today </h1>
+              </a> -->
             </div>
         </nav>
         <br>
@@ -55,18 +59,18 @@
                 <div class="row">
                     <div class="col-12 col-md-8 offset-md-2">
                         <div class="row bg-primary  w-card" style="color: #fff;">
-                            <div class="col-9">
+                            <div class="col">
                                 <h3> {{ data.city }} </h3>
                                 <p> {{ data.countryCode }} </p>
                             </div>
-                            <div class="col-3">
+                            <div class="col-6 d-flex justify-content-end">
                                 <figure>
                                     <form method="POST" action="{% url 'add' %} ">
                                         {% csrf_token %}
                                         <div class="input-group mb-3">
                                             <input type="text" class="form-control" name="cityname" value="{{data.city}}" hidden>
                                         </div>
-                                        <button class="btn btn-secondary" type="submit"><i class="fa-solid fa-plus"></i></button>
+                                        <button class="btn btn-outline-success rounded-circle" type="submit"><i class="fa-solid fa-plus"></i></button>
                                     </form>
                                 </figure>
                             </div>
@@ -150,13 +154,13 @@
             <div class="row">
                 <div class="col-12 col-md-8 offset-md-2">
                     <div class="row bg-primary  w-card" style="color: #fff;">
-                        <div class="col-9 col-sm-10">
+                        <div class="col">
                             <h3> {{ data.city }} </h3>
                             <p> {{ data.countryCode }} </p>
                         </div>
-                        <div class="col-3 col-sm-2">
+                        <div class="col-6 d-flex justify-content-end">
                             <figure>
-                                <a class="btn btn-secondary" href=" {% url 'del' data.city %} "><i class="fa-solid fa-trash"></i></a>
+                                <a class="btn btn-outline-danger rounded-circle" href=" {% url 'del' data.city %} "><i class="fa-solid fa-xmark"></i></a>
                             </figure>
                         </div>
                         <div class="col-12 w-flex">

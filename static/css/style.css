@@ -11,13 +11,17 @@ body{
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
+nav, footer{
+    background-image: url(/static/img/bg-weather-2.jpg);
+    background-repeat: no-repeat;
+}
 div.container{
     font-family: segoe-ui,  sans-serif !important;
 }
 
 .w-card{
     border-radius: 15px;
-    background-color: #12121240 !important;
+    background-color: #121212af !important;
     font-size: 2rem;
     box-sizing: border-box;
     padding: 3% 1%;
@@ -40,8 +44,9 @@ div.container{
         font-size: 3em;
     }
     .w-card h5{
-        font-size: 0.9em;
+        font-size: 0.68em;
     }
+
     .w-flex{
         display: flex;
         align-items: center;
@@ -71,6 +76,10 @@ div.container{
     .w-card h1{
         font-size: 2.5em;
     }
+    /* .w-card h5{
+        font-size: 0.7em;
+    } */
+
     .w-img{
         width: auto;
         height: auto;
