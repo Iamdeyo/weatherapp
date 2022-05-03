@@ -30,20 +30,28 @@ def index(req):
         feelsLikeK = float(json_data['main']['feels_like'])
         feelsLike = str(math.floor(feelsLikeK - 273.15))
 
+        # convert visibilty to KM
+        vibM = int(json_data['visibility'])
+        vibKm = str(math.floor(vibM / 1000))
+
         weather_dataS = {
-        'city':  str(json_data['name']),
-        'countryCode': str(json_data['sys']['country']),
-        'temperture': str(temp + '°C'),
-        'feelsLike' :  str(feelsLike + '°C'),
-        'cloudsDescription': str(json_data['weather'][0]['description']),
-        'icon': str(json_data['weather'][0]['icon']),
-        'pressure': str(json_data['main']['pressure']),
-        'humdity': str(json_data['main']['humidity']),
-        'cod' :  json_data['cod'],
-        'visibility' :  json_data['visibility'],
-        'wind' :  json_data['wind']['speed'],
+            'city':  str(json_data['name']),
+            'countryCode': str(json_data['sys']['country']),
+            'temperture': str(temp + '°C'),
+            'feelsLike' :  str(feelsLike + '°C'),
+            'cloudsDescription': str(json_data['weather'][0]['description']),
+            'icon': str(json_data['weather'][0]['icon']),
+            'pressure': str(json_data['main']['pressure']) + ' hPa',
+            'humdity': str(json_data['main']['humidity']) + '%',
+            'cod' :  json_data['cod'],
+            'visibility' : str(vibKm + ' km'),
+            'wind' :  str(json_data['wind']['speed']) + ' m/s',
         }
         data2.append(weather_dataS)
+
+    # print(len(savedCities))
+    if len(savedCities) == 0:
+        data2 = 'empty'
 
 
     # acity = str(cityModel.objects.get(id=1))
@@ -60,7 +68,7 @@ def index(req):
         # converting JSON to py dictionary
         # json_data = json.loads(api_data)
         json_data = api_data.json()
-        print(json_data)
+        # print(json_data)
 
         if json_data['cod'] == 200:
 
@@ -71,6 +79,11 @@ def index(req):
             feelsLikeK = float(json_data['main']['feels_like'])
             feelsLike = str(math.floor(feelsLikeK - 273.15))
 
+            # convert visibilty to KM
+            vibM = int(json_data['visibility'])
+            vibKm = str(math.floor(vibM / 1000))
+            # print(vibKm)
+
             weather_data = {
             'city':  str(json_data['name']),
             'countryCode': str(json_data['sys']['country']),
@@ -78,11 +91,11 @@ def index(req):
             'feelsLike' :  str(feelsLike + '°C'),
             'cloudsDescription': str(json_data['weather'][0]['description']),
             'icon': str(json_data['weather'][0]['icon']),
-            'pressure': str(json_data['main']['pressure']),
-            'humdity': str(json_data['main']['humidity']),
+            'pressure': str(json_data['main']['pressure']) + ' hPa',
+            'humdity': str(json_data['main']['humidity']) + '%',
             'cod' :  json_data['cod'],
-            'visibility' :  json_data['visibility'],
-            'wind' :  json_data['wind']['speed'],
+            'visibility' : str(vibKm + ' km'),
+            'wind' :  str(json_data['wind']['speed']) + ' m/s',
             }
 
         else:
@@ -91,7 +104,8 @@ def index(req):
                 'cod' :  json_data['cod'], 
                 'message' : json_data['message'],
             }
-            print(json_data)
+            messages.warning(req, f'{ weather_data["message"] }')
+            # print(json_data)
             # return redirect('index')
 
         # wdata = json_data
@@ -99,21 +113,27 @@ def index(req):
         # return redirect('index')
     else:
         wdata = ''
-
-    return render(req, 'weather/index.html', {'data': wdata, 'data2': data2})
+    savedItems = len(savedCities)
+    return render(req, 'weather/index.html', {'data': wdata, 'data2': data2, 'savedItems': savedItems})
 
 def addCity(req):
+    savedCities = cityModel.objects.all()
 
     if req.method == "POST":
 
         newCity = req.POST['cityname']
 
         if cityModel.objects.filter(city = newCity):
-            pass
+            messages.warning(req, f'{newCity} already saved')
+        elif len(savedCities) == 5:
+            messages.warning(req, f" Can't save more than 5 cities")
         else:
             cityModel.objects.create(
             city = req.POST['cityname']
             )
+            messages.success(req, f'City saved')
+    
+
 
             
 
@@ -134,7 +154,7 @@ def delCity(req, cn):
     # for city in delcity:
     #     print(city)
     #     city.delete()
-
+    messages.error(req, f'City deleted')
 
     return redirect('index')
 

@@ -1,14 +1,24 @@
+@font-face {
+    font-family: segoe-ui;
+    src: url(../fonts/SEGOEUI.TTF);
+}
+
+
 body{
-    background-image: url(/static/img/bg-weather.jpg);
+    background-image: url(/static/img/bg-weather-2.jpg);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
+div.container{
+    font-family: segoe-ui,  sans-serif !important;
+}
+
 .w-card{
     border-radius: 15px;
     background-color: #12121240 !important;
-    font-size: 1.5rem;
+    font-size: 2rem;
     box-sizing: border-box;
     padding: 3% 1%;
 }
@@ -27,7 +37,7 @@ body{
         font-size: 00.8em;
     }
     .w-card h1{
-        font-size: 2.3em;
+        font-size: 3em;
     }
     .w-card h5{
         font-size: 0.9em;
@@ -45,9 +55,21 @@ body{
         width: 100%;
         /* height: 100%; */
     }
+
+@media screen and (max-width: 991.98px) {
+    .w-card{
+        font-size: 1.5rem;
+    }
+    .w-card h1{
+        font-size: 2.8em;
+    }
+}
 @media screen and (max-width: 575.98px) {
     .w-card{
         font-size: 1rem;
+    }
+    .w-card h1{
+        font-size: 2.5em;
     }
     .w-img{
         width: auto;
