@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 import django_heroku
 import dj_database_url
-from decouple import config
 from pathlib import Path
 import os
 from django.contrib.messages import constants as messages
