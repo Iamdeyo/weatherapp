@@ -12,11 +12,13 @@
 
     </head>
     <body>
-        <nav class="navbar navbar-dark bg-secondary">
+        <nav class="navbar navbar-dark bg-secondary fixed-top">
             <div class="container-fluid">
               <a class="navbar-brand" href="#">Weather Today</a>
             </div>
         </nav>
+        <br>
+        <br>
         <br>
         <br>
 
@@ -32,98 +34,122 @@
                 </form>
             </div>
 
-            <div class="row">
-                <div class="col col-md-8 offset-md-2">
-
-                    <div class="dy-card">
-                        <div>
-                            <h2> Lagos </h2>
+            <!-- <div class="row">
+                <div class="col-12 col-md-8 offset-md-2">
+                    <div class="row bg-primary  w-card" style="color: #fff;">
+                        <div class="col-12">
+                            <h3> Lagos </h3>
                             <p> NG </p>
                         </div>
-                        <div>
-                            <figure>
+                        <div class="col-12 w-flex">
+                            <div class="w-img">
                                 <img src="http://openweathermap.org/img/w/01n.png" alt="Image" class="img-fluid">
-                            </figure>
-                            <h1>
-                                29*C
-                            </h1>
-                            <p>
-                                Mostly cloudy
-                            </p>
-
+                            </div>
+                            <div>
+                                <h1>
+                                    29*C
+                                </h1>
+                            </div>
+                            <div>
+                                <h3>
+                                    Mostly cloudy
+                                </h3>
+                                <p>
+                                    Feels Like 20*C
+                                </p>
+                            </div>
                         </div>
-                        <div>
-                            <aside>
-                                <p> Wind </p>
-                                <h4> 15km/h </h4>
-                            </aside>
-                            <aside>
-                                <p> Humdity </p>
-                                <h4> 15km/h </h4>
-                            </aside>
-                            <aside>
-                                <p> Visbility </p>
-                                <h4> 15km/h </h4>
-                            </aside>
-                            <aside>
-                                <p> pressure </p>
-                                <h4> 15km/h </h4>
-                            </aside>
+                        <div class="col-3">
+                            <p> Wind </p>
+                            <h5> 15km/h </h5>
                         </div>
-
-
+                        <div class="col-3">
+                            <p> Humdity </p>
+                            <h5> 15km/h </h5>
+                        </div>
+                        <div class="col-3">
+                            <p> Visbility </p>
+                            <h5> 15km/h </h5>
+                        </div>
+                        <div class="col-3">
+                            <p> pressure </p>
+                            <h5> 15km/h </h5>
+                        </div>
 
                     </div>
-                  
                 </div>
-            </div>
+            </div> -->
 
 
             {% if data.cod == 200 %}
-                <div class="row">
-                    <div class="col col-md-8 offset-md-2">
-                        <div class="">
-                            <img src="http://openweathermap.org/img/w/{{ data.icon }}.png" alt="Image" class="img-fluid">
-                        </div>
-                        <form method="POST" action="{% url 'add' %} ">
-                            {% csrf_token %}
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" name="cityname" value="{{data.city}}" hidden>
+                
+                        
+                        <div class="row">
+                            <div class="col-12 col-md-8 offset-md-2">
+                                <div class="row bg-primary  w-card" style="color: #fff;">
+                                    <div class="col-10">
+                                        <h3> {{ data.city }} </h3>
+                                        <p> {{ data.countryCode }} </p>
+                                    </div>
+                                    <div class="col-2">
+                                        <figure>
+                                            <form method="POST" action="{% url 'add' %} ">
+                                                {% csrf_token %}
+                                                <div class="input-group mb-3">
+                                                    <input type="text" class="form-control" name="cityname" value="{{data.city}}" hidden>
+                                                </div>
+                                                <button class="btn btn-secondary" type="submit"><i class="fa-solid fa-plus"></i></button>
+                                            </form>
+                                        </figure>
+                                    </div>
+                                    <div class="col-12 w-flex">
+                                        <div class="w-img">
+                                            <img src="http://openweathermap.org/img/w/{{ data.icon }}.png" alt="Image" class="img-fluid">
+                                        </div>
+                                        <div>
+                                            <h1>
+                                                {{ data.temperture }}
+                                            </h1>
+                                        </div>
+                                        <div>
+                                            <h3>
+                                                {{ data.cloudsDescription }}
+                                            </h3>
+                                            <p>
+                                                Feels Like {{ data.feelsLike }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <p> Wind </p>
+                                        <h5> {{ data.wind }} </h5>
+                                    </div>
+                                    <div class="col-3">
+                                        <p> Humdity </p>
+                                        <h5>{{ data.humdity }}%</h5>
+                                    </div>
+                                    <div class="col-3">
+                                        <p> Visbility </p>
+                                        <h5> {{ data.visibility }} </h5>
+                                    </div>
+                                    <div class="col-3">
+                                        <p> pressure </p>
+                                        <h5>{{ data.pressure }} mb</h5>
+                                    </div>
+            
+                                </div>
                             </div>
-                            <button class="btn btn-secondary" type="submit"><i class="fa-solid fa-plus"></i></button>
-                        </form>
-                        <table class="table table-light">
-                            <tbody>
-                            <tr>
-                                <th scope="row"> City </th>
-                                <td>{{ data.city }}</td>
-
-                            </tr>
-                            <tr>
-                                <th scope="row">Country Code</th>
-                                <td>{{ data.countryCode }}</td>
-
-                            </tr>
-                            <tr>
-                                <th scope="row">Temperture</th>
-                                <td>{{ data.temperture }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Pressure</th>
-                                <td>{{ data.pressure }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Humdity</th>
-                                <td>{{ data.humdity }}</td>
-                            </tr>
-                            </tbody>
-                        </table>
+                        </div>
                         <hr>
-                    </div> 
-                </div>
             {% endif %}
 
-            <hr> <hr>
+            <hr>
+
+            <h1>
+                Saved Cities
+            </h1>
+            
+            <hr>
 
             {% if data.message%}
                 <div class="row">
@@ -135,41 +161,57 @@
 
                 {% for data in data2 %}
 
-
                     <div class="row">
-                        <div class="col col-md-8 offset-md-2">
-                            <div class="">
-                                <img src="http://openweathermap.org/img/w/{{ data.icon }}.png" alt="Image" class="img-fluid">
+                        <div class="col-12 col-md-8 offset-md-2">
+                            <div class="row bg-primary  w-card" style="color: #fff;">
+                                <div class="col-10">
+                                    <h3> {{ data.city }} </h3>
+                                    <p> {{ data.countryCode }} </p>
+                                </div>
+                                <div class="col-2">
+                                    <figure>
+                                        <a class="btn btn-secondary btn" href=" {% url 'del' data.city %} "><i class="fa-solid fa-trash"></i></a>
+                                    </figure>
+                                </div>
+                                <div class="col-12 w-flex">
+                                    <div class="w-img">
+                                        <img src="http://openweathermap.org/img/w/{{ data.icon }}.png" alt="Image" class="img-fluid">
+                                    </div>
+                                    <div>
+                                        <h1>
+                                            {{ data.temperture }}
+                                        </h1>
+                                    </div>
+                                    <div>
+                                        <h3>
+                                            {{ data.cloudsDescription }}
+                                        </h3>
+                                        <p>
+                                            Feels Like {{ data.feelsLike }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <p> Wind </p>
+                                    <h5> {{ data.wind }} </h5>
+                                </div>
+                                <div class="col-3">
+                                    <p> Humdity </p>
+                                    <h5>{{ data.humdity }}%</h5>
+                                </div>
+                                <div class="col-3">
+                                    <p> Visbility </p>
+                                    <h5> {{ data.visibility }} </h5>
+                                </div>
+                                <div class="col-3">
+                                    <p> pressure </p>
+                                    <h5>{{ data.pressure }} mb</h5>
+                                </div>
+        
                             </div>
-                            <table class="table table-light">
-                                <tbody>
-                                <tr>
-                                    <th scope="row"> City </th>
-                                    <td>{{ data.city }}</td>
-
-                                </tr>
-                                <tr>
-                                    <th scope="row">Country Code</th>
-                                    <td>{{ data.countryCode }}</td>
-
-                                </tr>
-                                <tr>
-                                    <th scope="row">Temperture</th>
-                                    <td>{{ data.temperture }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Pressure</th>
-                                    <td>{{ data.pressure }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Humdity</th>
-                                    <td>{{ data.humdity }}</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <hr>
-                        </div> 
+                        </div>
                     </div>
+                    <br>
                 {% endfor %}
         </div>
 

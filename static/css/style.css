@@ -1,45 +1,56 @@
-.dy-card{
-    color: #fff;
-    background-color: rgb(121, 144, 174);
-    width: 100%;
-    box-sizing: border-box;
-    padding: 15px 10px;
+body{
+    background-image: url(/static/img/bg-weather.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.w-card{
     border-radius: 15px;
+    background-color: #12121240 !important;
+    font-size: 1.5rem;
+    box-sizing: border-box;
+    padding: 3% 1%;
+}
+
+.w-card *{
     margin: 0%;
 }
-.dy-card *{
-    margin: 0;
+.w-card > *{
+    margin-top: 10px;
 }
-.dy-card p{
+.w-card p{
     color: #ffffffd1;
-    font-size: 1.2rem;
-}
-.dy-card div:first-child{
-    /* font-size: 2rem; */
-}
-.dy-card div:nth-child(2){
-    display: flex;
-    /* justify-content: space-between; */
-    gap: 25px;
-    /* width: 70%; */
-    margin: 15px 0;
-}
-.dy-card div:nth-child(2) h1{
-    font-size: 4rem;
-}
-.dy-card div:nth-child(2) figure{
-    min-width: 100px;
-}
-.dy-card div:nth-child(2) img{
-    width: 100%;
-}
-.dy-card div:nth-child(3){
-    display: flex;
-    justify-content: space-between;
-}
-footer.footer{
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
+    font-size: 0.7em;
+    }
+    .w-card h3{
+        font-size: 00.8em;
+    }
+    .w-card h1{
+        font-size: 2.3em;
+    }
+    .w-card h5{
+        font-size: 0.9em;
+    }
+    .w-flex{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .w-img{
+        width: 150px;
+        height: 150px;
+    }
+    .w-img img{
+        width: 100%;
+        /* height: 100%; */
+    }
+@media screen and (max-width: 575.98px) {
+    .w-card{
+        font-size: 1rem;
+    }
+    .w-img{
+        width: auto;
+        height: auto;
+    }
 }
